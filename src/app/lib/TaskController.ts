@@ -6,6 +6,7 @@ export default {
     },
     // GET: /tasks/:taskId
     getUserTask: (taskId: string) => {
+        console.log(data.tasks.find(task => task.id === parseInt(taskId)));
         return data.tasks.find(task => task.id === parseInt(taskId));
     },
     // POST: /tasks
@@ -13,7 +14,7 @@ export default {
         if (data.tasks.length === 0) task.id = 1;
         else task.id = data.tasks[data.tasks.length - 1].id + 1;
         task.userId = userId;
-        task.status = "pendente";
+        task.status = "pending";
         data.tasks.push(task);
     },
     // PUT: /tasks/:taskId
