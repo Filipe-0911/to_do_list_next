@@ -46,7 +46,7 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
   }
 
   async function startTask(task: Task): Promise<void> {
-    const response = await fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+    const response = await fetch(`https://task-manager-pearl-one.vercel.app/api/tasks/${task.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...task, status: "in_progress" }),

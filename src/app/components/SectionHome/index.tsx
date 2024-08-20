@@ -7,7 +7,7 @@ export default function SectionHome() {
     const [numberOfTasks, setNumberOfTasks] = useState<number>(0);
 
     async function getUserTasks() {
-        const response = await fetch('http://localhost:3000/api/tasks')
+        const response = await fetch('https://task-manager-pearl-one.vercel.app/tasks')
         const data = await response.json()
         return data.tasks as Array<Task>
     }
