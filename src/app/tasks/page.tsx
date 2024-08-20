@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import TaskField from '../components/TaskField';
-// import { headers } from 'next/headers';
 import ListOfTasks from '../components/ListOfTasks';
 
 async function getUserTasks() {
