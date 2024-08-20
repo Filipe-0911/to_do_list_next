@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from 'react';
 import BtnGreen from '../NavBar/BtnGreen';
 import BtnRed from '../NavBar/BtnRed';
@@ -6,12 +5,12 @@ import BtnYellow from '../BtnYellow';
 
 interface ListOfTasksProps {
   listOfTasks: Array<Task>;
-  updateTaskStatus: (updateTaskId: number, newStatus: string) => void;
-  deleteTaskFromState: (deleteTaskId: number) => void;
+  // updateTaskStatus: (updateTaskId: number, newStatus: string) => void;
+  // deleteTaskFromState: (deleteTaskId: number) => void;
   status: string;
 }
 
-export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, deleteTaskFromState }: ListOfTasksProps): JSX.Element {
+export default function ListOfTasks({ listOfTasks, status,  }: ListOfTasksProps): JSX.Element {
 
   async function setTaskConcluded(task: Task) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks/${task.id}`, {
@@ -26,7 +25,7 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
       console.log(data.error);
       return;
     }
-    updateTaskStatus(task.id, "concluded")
+    // updateTaskStatus(task.id, "concluded")
   }
 
   async function deleteTask(task: Task): Promise<void> {
@@ -42,7 +41,7 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
       console.log(data.error);
       return;
     }
-    deleteTaskFromState(task.id)
+    // deleteTaskFromState(task.id)
   }
 
   async function startTask(task: Task): Promise<void> {
@@ -58,7 +57,7 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
       console.log(data.error);
       return;
     }
-    updateTaskStatus(task.id, "in_progress")
+    // updateTaskStatus(task.id, "in_progress")
   }
   const bgColor = status === "concluded" ? "bg-green-900" : status === "in_progress" ? "bg-yellow-600" : "bg-red-900";
 

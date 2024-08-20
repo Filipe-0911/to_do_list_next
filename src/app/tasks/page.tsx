@@ -4,7 +4,7 @@ import TaskField from '../components/TaskField';
 import ListOfTasks from '../components/ListOfTasks';
 
 async function getUserTasks() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks`)
+  const response = await fetch(`https://task-manager-beta-seven.vercel.app/api/tasks`)
   const data = await response.json();
   return data.tasks as Array<Task>;
 }
