@@ -7,7 +7,7 @@ import BtnRed from './BtnRed';
 export default function NavBar({ }): JSX.Element {
   const { data: session } = useSession();
   return (
-    <header className='flex justify-around content-center bg-slate-800 p-2 items-center fixed w-full top-0'>
+    <header className='flex justify-around content-center bg-slate-800 p-2 items-center fixed w-full top-0 z-50'>
       <span>
         {session?.user?.email}
       </span>

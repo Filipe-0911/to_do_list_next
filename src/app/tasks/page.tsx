@@ -27,11 +27,17 @@ export default function page() {
   }
 
   return (
-    <main className="flex-col items-center justify-center min-h-full min-w-full my-20">
+    <main className="flex flex-col items-center justify-center min-h-full min-w-full my-20">
       <TaskField setUserTasks={setUserTasks} tasks={userTasks} />
       {
         userTasks.length > 0 &&
         <>
+          <ListOfTasks
+            listOfTasks={userTasks.filter(task => task.status === "pending")}
+            status="pending"
+            updateTaskStatus={updateTaskStatus}
+            deleteTaskFromState={deleteTaskFromState}
+          />
           <ListOfTasks
             listOfTasks={userTasks.filter(task => task.status === "in_progress")}
             status="in_progress"
@@ -41,12 +47,6 @@ export default function page() {
           <ListOfTasks
             listOfTasks={userTasks.filter(task => task.status === "concluded")}
             status="concluded"
-            updateTaskStatus={updateTaskStatus}
-            deleteTaskFromState={deleteTaskFromState}
-          />
-          <ListOfTasks
-            listOfTasks={userTasks.filter(task => task.status === "pending")}
-            status="pending"
             updateTaskStatus={updateTaskStatus}
             deleteTaskFromState={deleteTaskFromState}
           />
