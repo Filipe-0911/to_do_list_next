@@ -8,6 +8,8 @@ interface TaskFieldProps {
 }
 
 export default function TaskField({ setUserTasks, tasks }: TaskFieldProps): JSX.Element {
+  const URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
+
   const [taskValue, setTaskValue] = useState<string>("");
 
   const handleChanger = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +17,7 @@ export default function TaskField({ setUserTasks, tasks }: TaskFieldProps): JSX.
   }
 
   const submit = async () => {
-    const response = await fetch("https://task-manager-pearl-one.vercel.app/api/tasks", {
+    const response = await fetch(`${URL}/api/tasks`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       next: { tags: ["tasks"] },

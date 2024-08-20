@@ -2,12 +2,14 @@
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
+const URL = process.env.NEXTAUTH_URL;
+
 export default function SectionHome() {
     const { data: session } = useSession();
     const [numberOfTasks, setNumberOfTasks] = useState<number>(0);
 
     async function getUserTasks() {
-        const response = await fetch('https://task-manager-pearl-one.vercel.app/tasks')
+        const response = await fetch(`${URL}/tasks`)
         const data = await response.json()
         return data.tasks as Array<Task>
     }
