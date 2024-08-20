@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react';
 import TaskField from '../components/TaskField';
 import ListOfTasks from '../components/ListOfTasks';
 
-const URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
-
 async function getUserTasks() {
-  const response = await fetch(`${URL}/api/tasks`)
+  const response = await fetch(`https://task-manager-pearl-one.vercel.app/api/tasks`)
   const data = await response.json();
   return data.tasks as Array<Task>;
 }
