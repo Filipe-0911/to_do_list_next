@@ -1,12 +1,23 @@
-import TaskController from '@/app/lib/TaskController';
-import { getServerSession } from 'next-auth';
+"use client"
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
-export default async function SectionHome() {
-    const session = await getServerSession();
+export default function SectionHome() {
+    const { data: session } = useSession();
+    const [numberOfTasks, setNumberOfTasks] = useState<number>(0);
 
-    const numberOfTasks = TaskController.getUserTasks(session?.user?.email!).length;
+    async function getUserTasks() {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks`)
+        const data = await response.json()
+        return data.tasks as Array<Task>
+    }
+
+    useEffect(() => {
+        getUserTasks().then(response => {
+            console.log(response)
+            setNumberOfTasks(response.length)
+        })
+    }, [])
     
 
     return (
@@ -17,7 +28,9 @@ export default async function SectionHome() {
             <section className='flex flex-col my-10'>
                 {session && (
                     <>
-                        <p>Olá, {session.user?.name}! Você tem { numberOfTasks } tarefa(s).</p>
+                        <p>Olá, {session?.user?.name}! Você tem { numberOfTasks } tarefa(s).</p>
+
+
                     </>
                 )}
                 {!session && (
