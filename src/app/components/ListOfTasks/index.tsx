@@ -63,13 +63,13 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
   const bgColor = status === "concluded" ? "bg-green-900" : status === "in_progress" ? "bg-yellow-600" : "bg-red-900";
 
   return (
-    <ul className={`flex flex-col items-center list-none w-9/12 min-h-36 ${bgColor} `}>
-      <h4 className='text-2xl'>
-        {status}
+    <ul className={`flex flex-col items-center list-none w-9/12 min-h-36 ${bgColor} my-5 rounded-lg`}>
+      <h4 className='text-2xl text-wrap'>
+        {status === "concluded" ? "Concluído" : status === "in_progress" ? "Em progresso" : "Pendentes"}
       </h4>
       {listOfTasks.map((task) => (
-        <li key={task.id} className='flex items-center justify-between bg-slate-900 w-3/5 p-2'>
-          {task.title}
+        <li key={task.id} className='flex items-center justify-between bg-slate-900 w-11/12 p-2 rounded-lg'>
+          <p className='max-w-72'>{task.title}</p>
           <section className='flex items-center'>
             <BtnGreen onClick={() => setTaskConcluded(task)}>
               Concluir
