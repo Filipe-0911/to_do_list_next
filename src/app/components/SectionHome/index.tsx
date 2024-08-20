@@ -7,13 +7,16 @@ export default function SectionHome() {
     const [numberOfTasks, setNumberOfTasks] = useState<number>(0);
 
     async function getUserTasks() {
-        const response = await fetch(`https://task-manager-beta-seven.vercel.app/tasks`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks`)
         const data = await response.json()
         return data.tasks as Array<Task>
     }
 
     useEffect(() => {
-        getUserTasks().then(response => setNumberOfTasks(response.length))
+        getUserTasks().then(response => {
+            console.log(response)
+            setNumberOfTasks(response.length)
+        })
     }, [])
     
 

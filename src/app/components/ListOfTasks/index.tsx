@@ -14,7 +14,7 @@ interface ListOfTasksProps {
 export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, deleteTaskFromState }: ListOfTasksProps): JSX.Element {
 
   async function setTaskConcluded(task: Task) {
-    const response = await fetch(`https://task-manager-beta-seven.vercel.app/${task.id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks/${task.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...task, status: "concluded" }),
@@ -31,7 +31,7 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
 
   async function deleteTask(task: Task): Promise<void> {
     console.log(task)
-    const response = await fetch(`https://task-manager-beta-seven.vercel.app/${task.id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks/${task.id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -46,7 +46,7 @@ export default function ListOfTasks({ listOfTasks, status, updateTaskStatus, del
   }
 
   async function startTask(task: Task): Promise<void> {
-    const response = await fetch(`https://task-manager-beta-seven.vercel.app/${task.id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks/${task.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...task, status: "in_progress" }),

@@ -16,7 +16,7 @@ export default function TaskField({ setUserTasks, tasks }: TaskFieldProps): JSX.
   }
 
   const submit = async () => {
-    const response = await fetch(`https://task-manager-beta-seven.vercel.app/api/tasks`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tasks`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       next: { tags: ["tasks"] },
